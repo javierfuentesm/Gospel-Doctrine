@@ -11,8 +11,6 @@ module.exports = {
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
-    
-    'gatsby-plugin-offline',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -24,6 +22,7 @@ module.exports = {
         display: `standalone`
       }
     },
+    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-source-sanity',
       options: {
