@@ -19,10 +19,11 @@ module.exports = {
         start_url: `/`,
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
-        display: `standalone`
+        display: `standalone`,
+        icon: `src/images/icon.png` // This path is relative to the root of the site.
+
       }
     },
-    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-source-sanity',
       options: {
@@ -31,6 +32,7 @@ module.exports = {
         watchMode: !isProd,
         overlayDrafts: !isProd
       }
-    }
+    },
+    'gatsby-plugin-offline'
   ]
 }
