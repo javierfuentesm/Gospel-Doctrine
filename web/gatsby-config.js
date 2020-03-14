@@ -11,15 +11,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-sanity',
-      options: {
-        ...clientConfig.sanity,
-        token: process.env.SANITY_READ_TOKEN,
-        watchMode: !isProd,
-        overlayDrafts: !isProd
-      }
-    },
+    
     'gatsby-plugin-offline',
     {
       resolve: `gatsby-plugin-manifest`,
@@ -30,6 +22,15 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
         display: `standalone`
+      }
+    },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        ...clientConfig.sanity,
+        token: process.env.SANITY_READ_TOKEN,
+        watchMode: !isProd,
+        overlayDrafts: !isProd
       }
     }
   ]
