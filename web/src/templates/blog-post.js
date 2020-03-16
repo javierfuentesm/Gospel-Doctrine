@@ -9,7 +9,7 @@ import {toPlainText} from '../lib/helpers'
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
-    post: sanityPost(id: {eq: $id}) {
+    post: sanityPost(id: { eq: $id }) {
       id
       publishedAt
       categories {
@@ -24,8 +24,8 @@ export const query = graphql`
       slug {
         current
       }
-      _rawExcerpt(resolveReferences: {maxDepth: 15})
-      _rawBody(resolveReferences: {maxDepth: 15})
+      _rawExcerpt(resolveReferences: { maxDepth: 15 })
+      _rawBody(resolveReferences: { maxDepth: 15 })
       authors {
         _key
         author {
@@ -54,16 +54,35 @@ export const query = graphql`
         }
       }
     }
+    allPosts: allSanityPost(sort: {fields: title}) {
+      edges {
+      node {
+        id
+        title
+        publishedAt
+        slug{
+          current
+        }
+      }
+    }
+    }
   }
 `
 
 const BlogPostTemplate = props => {
   const {data, errors} = props
   const post = data && data.post
+  const allPosts = data && data.allPosts.edges
   return (
     <Layout>
       {errors && <SEO title='GraphQL Error' />}
-      {post && <SEO title={post.title || 'Untitled'} description={toPlainText(post._rawExcerpt)} image={post.mainImage} />}
+      {post && (
+        <SEO
+          title={post.title || 'Untitled'}
+          description={toPlainText(post._rawExcerpt)}
+          image={post.mainImage}
+        />
+      )}
 
       {errors && (
         <Container>
@@ -71,7 +90,7 @@ const BlogPostTemplate = props => {
         </Container>
       )}
 
-      {post && <BlogPost {...post} />}
+      {post && <BlogPost allPosts={allPosts} {...post} />}
     </Layout>
   )
 }

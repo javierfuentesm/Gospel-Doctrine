@@ -1,15 +1,15 @@
 import {format, distanceInWords, differenceInDays} from 'date-fns'
 import React from 'react'
-import {buildImageObj} from '../lib/helpers'
+import {buildImageObj, getBlogUrl} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import PortableText from './portableText'
 import Container from './container'
 import AuthorList from './author-list'
-
 import styles from './blog-post.module.css'
+import {Link} from 'gatsby'
 
 function BlogPost (props) {
-  const {_rawBody, authors, categories, title, mainImage, publishedAt} = props
+  const {_rawBody, authors, categories, title, mainImage, publishedAt, allPosts} = props
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
@@ -40,13 +40,31 @@ function BlogPost (props) {
               </div>
             )}
             {authors && <AuthorList items={authors} title='Authors' />}
+            {console.log(allPosts)}
             {categories && (
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Categories</h3>
                 <ul>
                   {categories.map(category => (
-                    <li key={category._id}>{category.title}</li>
+                    <a>
+                      <li key={category._id}>{category.title}</li>
+                    </a>
                   ))}
+                </ul>
+              </div>
+            )}
+            {allPosts && (
+              <div className={styles.categories}>
+                <h3 className={styles.categoriesHeadline}>Other sections</h3>
+                <ul>
+                  {allPosts.map(category => {
+                    const category2 = category.node
+                    return (
+                      <Link to={getBlogUrl(category2.publishedAt, category2.slug.current)}>
+                        <li key={category2.id}>{category2.title}</li>
+                      </Link>
+                    )
+                  })}
                 </ul>
               </div>
             )}
