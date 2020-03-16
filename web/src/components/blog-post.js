@@ -40,7 +40,6 @@ function BlogPost (props) {
               </div>
             )}
             {authors && <AuthorList items={authors} title='Authors' />}
-            {console.log(allPosts)}
             {categories && (
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Categories</h3>
@@ -55,13 +54,13 @@ function BlogPost (props) {
             )}
             {allPosts && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Other sections</h3>
+                <h3 className={styles.categoriesHeadline}>BOOK MENU</h3>
                 <ul>
-                  {allPosts.map(category => {
-                    const category2 = category.node
+                  {allPosts.map(post => {
+                    const finalPost = post.node
                     return (
-                      <Link to={getBlogUrl(category2.publishedAt, category2.slug.current)}>
-                        <li key={category2.id}>{category2.title}</li>
+                      <Link to={getBlogUrl(finalPost.publishedAt, finalPost.slug.current)}>
+                        <li key={finalPost.id}>{finalPost.title}</li>
                       </Link>
                     )
                   })}
