@@ -66,6 +66,19 @@ export const query = graphql`
       }
     }
     }
+    allVerses:allSanityVerses(filter: {post: {elemMatch: {id: {eq: $id}}}}) {
+    edges {
+      node {
+        post {
+          _id
+          title
+        }
+        id
+        _rawPost
+        _rawBody
+      }
+    }
+  }
   }
 `
 
@@ -73,6 +86,7 @@ const BlogPostTemplate = props => {
   const {data, errors} = props
   const post = data && data.post
   const allPosts = data && data.allPosts.edges
+  const allVerses = data && data.allVerses.edges
   return (
     <Layout>
       {errors && <SEO title='GraphQL Error' />}
@@ -90,7 +104,7 @@ const BlogPostTemplate = props => {
         </Container>
       )}
 
-      {post && <BlogPost allPosts={allPosts} {...post} />}
+      {post && <BlogPost allVerses={allVerses} allPosts={allPosts} {...post} />}
     </Layout>
   )
 }

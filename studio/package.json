@@ -5,10 +5,10 @@
   "main": "package.json",
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
-    "dev": "sanity start",
+    "dev": "npx sanity start",
     "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
-    "build": "sanity build",
-    "graphql-deploy": "sanity graphql deploy --playground",
+    "build": "npx sanity build",
+    "graphql-deploy": "npx sanity graphql deploy --playground",
     "lint": "eslint .",
     "test": "sanity check"
   },

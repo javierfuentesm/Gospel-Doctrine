@@ -9,7 +9,8 @@ import styles from './blog-post.module.css'
 import {Link} from 'gatsby'
 
 function BlogPost (props) {
-  const {_rawBody, authors, categories, title, mainImage, publishedAt, allPosts} = props
+  const {_rawBody, authors, categories, title, mainImage, publishedAt, allPosts, allVerses} = props
+  console.log(allVerses)
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
