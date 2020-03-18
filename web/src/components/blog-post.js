@@ -10,16 +10,13 @@ import {Link} from 'gatsby'
 
 function BlogPost (props) {
   const {
-    _rawBody,
     authors,
-    categories,
-    title,
+    book,
     mainImage,
     publishedAt,
     allPosts,
     allVerses
   } = props
-  console.log(allVerses)
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
@@ -58,13 +55,13 @@ function BlogPost (props) {
               </div>
             )}
             {authors && <AuthorList items={authors} title='Authors' />}
-            {categories && (
+            {book && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Categories</h3>
+                <h3 className={styles.categoriesHeadline}>Book</h3>
                 <ul>
-                  {categories.map(category => (
+                  {book.map(item => (
                     <a>
-                      <li key={category._id}>{category.title}</li>
+                      <li key={item._id}>{item.title}</li>
                     </a>
                   ))}
                 </ul>

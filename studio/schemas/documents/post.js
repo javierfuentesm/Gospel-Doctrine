@@ -50,14 +50,14 @@ export default {
       ]
     },
     {
-      name: 'categories',
+      name: 'book',
       type: 'array',
-      title: 'Categories',
+      title: 'Book',
       of: [
         {
           type: 'reference',
           to: {
-            type: 'category'
+            type: 'book'
           }
         }
       ]

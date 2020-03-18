@@ -12,7 +12,7 @@ export const query = graphql`
     post: sanityPost(id: { eq: $id }) {
       id
       publishedAt
-      categories {
+      book {
         _id
         title
       }
