@@ -44,7 +44,7 @@ export const query = graphql`
 
     posts: allSanityPost(
       limit: 6
-      sort: { fields: [publishedAt], order: DESC }
+      sort: { fields: [title]}
       filter: {
         slug: { current: { ne: null } }
         publishedAt: { ne: null }
@@ -67,15 +67,7 @@ export const query = graphql`
         }
       }
     }
-    books: allSanityBook {
-      edges {
-        node {
-          id
-          title
-          description
-        }
-      }
-    }
+
   }
 `
 
@@ -90,7 +82,6 @@ const BlogPostTemplate = props => {
   }
 
   const site = (data || {}).site
-  const books = (data || {}).books
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts)
       .filter(filterOutDocsWithoutSlugs)

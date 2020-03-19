@@ -54,31 +54,48 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allSanityPost(sort: {fields: title}) {
+    allPosts: allSanityPost(sort: { fields: title }) {
       edges {
-      node {
-        id
-        title
-        publishedAt
-        slug{
-          current
-        }
-      }
-    }
-    }
-    allVerses:allSanityVerses(filter: {post: {elemMatch: {id: {eq: $id}}}}) {
-    edges {
-      node {
-        post {
-          _id
+        node {
+          id
           title
+          publishedAt
+          slug {
+            current
+          }
         }
-        id
-        _rawPost
-        _rawBody
       }
     }
-  }
+    allVerses: allSanityVerses(
+      sort: { fields: [title] }
+      filter: { post: { elemMatch: { id: { eq: $id } } } }
+    ) {
+      edges {
+        node {
+          post {
+            _id
+            title
+          }
+          id
+          title
+          _rawPost
+          _rawBody
+        }
+      }
+    }
+    allBooks: allSanityBook {
+      edges {
+        node {
+          id
+          title
+          description
+          publishedAt
+          slug {
+            current
+          }
+        }
+      }
+    }
   }
 `
 
@@ -87,6 +104,8 @@ const BlogPostTemplate = props => {
   const post = data && data.post
   const allPosts = data && data.allPosts.edges
   const allVerses = data && data.allVerses.edges
+  const allBooks = data && data.allBooks.edges
+
   return (
     <Layout>
       {errors && <SEO title='GraphQL Error' />}
@@ -104,7 +123,7 @@ const BlogPostTemplate = props => {
         </Container>
       )}
 
-      {post && <BlogPost allVerses={allVerses} allPosts={allPosts} {...post} />}
+      {post && <BlogPost allBooks={allBooks} allVerses={allVerses} allPosts={allPosts} {...post} />}
     </Layout>
   )
 }

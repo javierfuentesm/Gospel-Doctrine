@@ -36,8 +36,11 @@
     "react-helmet": "^5.2.1"
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-manifest": "^2.2.47",
-    "gatsby-plugin-offline": "^3.0.40"
+    "gatsby-plugin-offline": "^3.0.40",
+    "gatsby-plugin-styled-components": "^3.1.21",
+    "styled-components": "^5.0.1"
   }
 }

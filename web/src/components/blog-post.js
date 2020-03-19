@@ -1,22 +1,21 @@
 import {format, distanceInWords, differenceInDays} from 'date-fns'
 import React from 'react'
-import {buildImageObj, getBlogUrl} from '../lib/helpers'
+import {buildImageObj, getBlogUrl, getBookUrl} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import PortableText from './portableText'
 import Container from './container'
-import AuthorList from './author-list'
 import styles from './blog-post.module.css'
 import {Link} from 'gatsby'
 
+import {
+  CardWrapper,
+  CardHeader,
+  CardHeading,
+  CardBody
+} from '../components/styledComponents/Card'
+
 function BlogPost (props) {
-  const {
-    authors,
-    book,
-    mainImage,
-    publishedAt,
-    allPosts,
-    allVerses
-  } = props
+  const {allBooks, mainImage, publishedAt, allPosts, allVerses} = props
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
@@ -38,10 +37,14 @@ function BlogPost (props) {
             {allVerses.map(post => {
               const finalVerse = post.node
               return (
-                <>
-                  <h1 className={styles.title}>{finalVerse.title}</h1>
-                  {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
-                </>
+                <CardWrapper>
+                  <CardHeader>
+                    <CardHeading>{finalVerse.title}</CardHeading>
+                  </CardHeader>
+                  <CardBody>
+                    {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
+                  </CardBody>
+                </CardWrapper>
               )
             })}
           </div>
@@ -54,14 +57,15 @@ function BlogPost (props) {
                   : format(new Date(publishedAt), 'MMMM Do, YYYY')}
               </div>
             )}
-            {authors && <AuthorList items={authors} title='Authors' />}
-            {book && (
+            {allBooks && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Book</h3>
+                <h3 className={styles.categoriesHeadline}>Books</h3>
                 <ul>
-                  {book.map(item => (
+                  {allBooks.map(book => (
                     <a>
-                      <li key={item._id}>{item.title}</li>
+                      <Link to={getBookUrl(book.node.publishedAt, book.node.slug.current)}>
+                        <li key={book.node._id}>{book.node.title}</li>
+                      </Link>
                     </a>
                   ))}
                 </ul>
@@ -69,7 +73,7 @@ function BlogPost (props) {
             )}
             {allPosts && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>BOOK MENU</h3>
+                <h3 className={styles.categoriesHeadline}>CHAPTER MENU</h3>
                 <ul>
                   {allPosts.map(post => {
                     const finalPost = post.node
