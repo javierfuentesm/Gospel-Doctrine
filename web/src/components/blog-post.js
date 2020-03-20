@@ -65,7 +65,7 @@ function BlogPost (props) {
             )}
             {allPosts && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>CHAPTER MENU</h3>
+                <h3 className={styles.categoriesHeadline}>Chapter Menu</h3>
                 <ul>
                   {allPosts.map(post => {
                     const finalPost = post.node
