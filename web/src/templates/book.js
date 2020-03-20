@@ -43,7 +43,6 @@ export const query = graphql`
     }
 
     posts: allSanityPost(
-      limit: 6
       sort: { fields: [title]}
       filter: {
         slug: { current: { ne: null } }
@@ -71,7 +70,7 @@ export const query = graphql`
   }
 `
 
-const BlogPostTemplate = props => {
+const BookTemplate = props => {
   const {data, errors} = props
   if (errors) {
     return (
@@ -100,7 +99,7 @@ const BlogPostTemplate = props => {
         <h1 hidden>Welcome to {site.title}</h1>
         {postNodes && (
           <BlogPostPreviewList
-            title='Latest blog posts'
+            title='Books 2'
             nodes={postNodes}
             browseMoreHref='/archive/'
           />
@@ -110,4 +109,4 @@ const BlogPostTemplate = props => {
   )
 }
 
-export default BlogPostTemplate
+export default BookTemplate

@@ -1,7 +1,7 @@
 export default {
-  name: 'book',
+  name: 'quad',
   type: 'document',
-  title: 'Book',
+  title: 'Quad',
   fields: [
     {
       name: 'title',
@@ -28,19 +28,6 @@ export default {
       type: 'datetime',
       title: 'Published at',
       description: 'This can be used to schedule post for publishing'
-    },
-    {
-      name: 'quad',
-      type: 'array',
-      title: 'Quad',
-      of: [
-        {
-          type: 'reference',
-          to: {
-            type: 'quad'
-          }
-        }
-      ]
     },
     {
       name: 'mainImage',

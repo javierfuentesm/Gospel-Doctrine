@@ -1,8 +1,14 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import QuadPreviewList from '../components/quad-preview-list'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
+import {
+  mapEdgesToNodes,
+  filterOutDocsWithoutSlugs,
+  filterOutDocsPublishedInTheFuture
+} from '../lib/helpers'
+import BookPreviewList from '../components/book-preview-list'
+
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 
@@ -29,14 +35,21 @@ export const query = graphql`
     }
   }
 
-  query IndexPageQuery {
+  query QuadTemplateQuery($id: String!) {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
       keywords
     }
 
-    quad: allSanityQuad {
+    books: allSanityBook(
+      sort: { fields: [title] }
+      filter: {
+        slug: { current: { ne: null } }
+        publishedAt: { ne: null }
+        quad: { elemMatch: { id: { eq: $id } } }
+      }
+    ) {
       edges {
         node {
           id
@@ -56,9 +69,8 @@ export const query = graphql`
   }
 `
 
-const IndexPage = props => {
+const QuadTemplate = props => {
   const {data, errors} = props
-
   if (errors) {
     return (
       <Layout>
@@ -68,8 +80,11 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site
-  const quad = (data || {}).quad.edges
-
+  const books = (data || {}).books
+    ? mapEdgesToNodes(data.books)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterOutDocsPublishedInTheFuture)
+    : []
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
@@ -81,16 +96,12 @@ const IndexPage = props => {
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
-        {quad && (
-          <QuadPreviewList
-            title='Books'
-            nodes={quad}
-            browseMoreHref='/archive/'
-          />
+        {books && (
+          <BookPreviewList title='Books' nodes={books} browseMoreHref='/archive/' />
         )}
       </Container>
     </Layout>
   )
 }
 
-export default IndexPage
+export default QuadTemplate

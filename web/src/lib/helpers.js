@@ -18,10 +18,13 @@ export function filterOutDocsPublishedInTheFuture ({publishedAt}) {
 }
 
 export function getBlogUrl (publishedAt, slug) {
-  return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
+  return `/chapter/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
 }
 export function getBookUrl (publishedAt, slug) {
   return `/book/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
+}
+export function getQuadUrl (publishedAt, slug) {
+  return `/quad/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
 }
 
 export function buildImageObj (source = {asset: {}}) {
