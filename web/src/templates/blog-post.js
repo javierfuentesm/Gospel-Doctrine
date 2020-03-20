@@ -8,7 +8,7 @@ import Layout from '../containers/layout'
 import {toPlainText} from '../lib/helpers'
 
 export const query = graphql`
-  query BlogPostTemplateQuery($id: String!) {
+  query BlogPostTemplateQuery($id: String!, $idQuad: String!, $idBook: String!) {
     post: sanityPost(id: { eq: $id }) {
       id
       publishedAt
@@ -54,7 +54,11 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allSanityPost(sort: { fields: title }) {
+
+    allPosts: allSanityPost(
+      sort: { fields: order }
+      filter: { book: { elemMatch: { id: { eq: $idBook } } } }
+    ) {
       edges {
         node {
           id
@@ -66,6 +70,7 @@ export const query = graphql`
         }
       }
     }
+
     allVerses: allSanityVerses(
       sort: { fields: [title] }
       filter: { post: { elemMatch: { id: { eq: $id } } } }
@@ -83,7 +88,8 @@ export const query = graphql`
         }
       }
     }
-    allBooks: allSanityBook {
+
+    allBooks: allSanityBook(filter: { quad: { elemMatch: { id: { eq: $idQuad } } } }) {
       edges {
         node {
           id

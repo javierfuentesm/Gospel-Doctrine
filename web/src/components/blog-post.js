@@ -1,4 +1,3 @@
-import {format, distanceInWords, differenceInDays} from 'date-fns'
 import React from 'react'
 import {buildImageObj, getBlogUrl, getBookUrl} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
@@ -50,13 +49,6 @@ function BlogPost (props) {
           </div>
 
           <aside className={styles.metaContent}>
-            {publishedAt && (
-              <div className={styles.publishedAt}>
-                {differenceInDays(new Date(publishedAt), new Date()) > 3
-                  ? distanceInWords(new Date(publishedAt), new Date())
-                  : format(new Date(publishedAt), 'MMMM Do, YYYY')}
-              </div>
-            )}
             {allBooks && (
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Books</h3>

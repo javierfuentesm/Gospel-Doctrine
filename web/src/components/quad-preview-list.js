@@ -12,7 +12,7 @@ function QuadPreviewGrid (props) {
         {props.nodes &&
           props.nodes.map(node => (
             <li key={node.id}>
-              <QuadPreview {...node} isInList />
+              <QuadPreview {...node} />
             </li>
           ))}
       </ul>

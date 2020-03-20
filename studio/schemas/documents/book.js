@@ -14,6 +14,11 @@ export default {
       title: 'Description'
     },
     {
+      name: 'order',
+      type: 'number',
+      title: 'Order of the Book'
+    },
+    {
       name: 'slug',
       type: 'slug',
       title: 'Slug',

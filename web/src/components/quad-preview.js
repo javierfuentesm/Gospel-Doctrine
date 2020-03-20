@@ -4,7 +4,6 @@ import React from 'react'
 import {buildImageObj, cn, getQuadUrl} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import PortableText from './portableText'
-
 import styles from './blog-post-preview.module.css'
 import {responsiveTitle3} from './typography.module.css'
 

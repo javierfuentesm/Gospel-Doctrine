@@ -22,6 +22,11 @@ export default {
       }
     },
     {
+      name: 'order',
+      type: 'number',
+      title: 'Order of the Chapter'
+    },
+    {
       name: 'publishedAt',
       type: 'datetime',
       title: 'Published at',
