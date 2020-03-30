@@ -74,7 +74,6 @@ function BlogPost (props) {
                   </CardHeader>
                   <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
-                    {console.log(window.location.href)}
                     {showShare && showShare.length > 0 && (
                       <>
                         {showShare[key].show && (
