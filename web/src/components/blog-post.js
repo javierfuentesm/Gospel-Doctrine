@@ -32,7 +32,6 @@ function BlogPost (props) {
     })
   }, [])
   useEffect(() => {
-    console.log(texto)
     if (texto !== undefined) {
       if (texto.text === '') {
         setShowShare([...showShare, (showShare[texto.key].show = false)])
@@ -81,7 +80,7 @@ function BlogPost (props) {
                             <ShareComponent
                               url={window.location.href}
                               quote={finalVerse.title}
-                              text={texto}
+                              text={texto.text}
                             />
                           </>
                         )}
