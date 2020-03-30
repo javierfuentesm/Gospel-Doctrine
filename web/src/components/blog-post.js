@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {buildImageObj, getBlogUrl, getBookUrl} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import PortableText from './portableText'
 import Container from './container'
+import ShareComponent from './share'
 import styles from './blog-post.module.css'
 import {Link} from 'gatsby'
 
@@ -14,7 +15,33 @@ import {
 } from '../components/styledComponents/Card'
 
 function BlogPost (props) {
-  const {allBooks, mainImage, publishedAt, allPosts, allVerses} = props
+  const {allBooks, mainImage, allPosts, allVerses} = props
+  const [texto, setTexto] = useState()
+  const [showShare, setShowShare] = useState([])
+
+  useEffect(() => {
+    let json = {}
+    allVerses.forEach((element, key) => {
+      let aux = JSON.parse(JSON.stringify(showShare))
+      json = {
+        show: false,
+        id: key
+      }
+      aux.push(json)
+      setShowShare(showShare => [...showShare, json])
+    })
+  }, [])
+  useEffect(() => {
+    console.log(texto)
+    if (texto !== undefined) {
+      if (texto.text === '') {
+        setShowShare([...showShare, (showShare[texto.key].show = false)])
+      } else {
+        setShowShare([...showShare, (showShare[texto.key].show = true)])
+      }
+    }
+  }, [texto])
+
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
@@ -33,15 +60,34 @@ function BlogPost (props) {
       <Container>
         <div className={styles.grid}>
           <div className={styles.mainContent}>
-            {allVerses.map(post => {
+            {allVerses.map((post, key) => {
               const finalVerse = post.node
               return (
-                <CardWrapper>
+                <CardWrapper
+                  onMouseUp={() => {
+                    setTexto({text: window.getSelection().toString(), key: key})
+                  }}
+                  key={key}
+                >
                   <CardHeader>
                     <CardHeading>{finalVerse.title}</CardHeading>
                   </CardHeader>
                   <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
+                    {console.log(window.location.href)}
+                    {showShare && showShare.length > 0 && (
+                      <>
+                        {showShare[key].show && (
+                          <>
+                            <ShareComponent
+                              url={window.location.href}
+                              quote={finalVerse.title}
+                              text={texto}
+                            />
+                          </>
+                        )}
+                      </>
+                    )}
                   </CardBody>
                 </CardWrapper>
               )
