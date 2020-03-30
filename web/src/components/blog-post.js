@@ -79,6 +79,9 @@ function BlogPost (props) {
                   onMouseUp={() => {
                     setTexto({text: getSelectedText(), key: key})
                   }}
+                  onTouchEnd={() => {
+                    setTexto({text: getSelectedText(), key: key})
+                  }}
                   key={key}
                 >
                   <CardHeader>
