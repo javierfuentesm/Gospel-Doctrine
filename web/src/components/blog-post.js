@@ -25,12 +25,12 @@ function BlogPost (props) {
     if (window.getSelection) {
       selection = window.getSelection()
     } else if (typeof document.selection !== 'undefined') {
-      selection = document.selection
+      selection = document.getSelection()
     }
 
-    var selectedRange = selection.getRangeAt(0)
+    /*  var selectedRange = selection.getRangeAt(0) */
 
-    return selectedRange.toString()
+    return selection.toString()
   }
   useEffect(() => {
     let json = {}
@@ -81,7 +81,7 @@ function BlogPost (props) {
                   }}
                   onTouchEnd={() => {
                     setTexto({text: getSelectedText(), key: key})
-                    alert(texto.text)
+                    alert(getSelectedText())
                   }}
                   key={key}
                 >
