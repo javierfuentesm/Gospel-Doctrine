@@ -19,6 +19,19 @@ function BlogPost (props) {
   const [texto, setTexto] = useState()
   const [showShare, setShowShare] = useState([])
 
+  const getSelectedText = () => {
+    var selection = null
+
+    if (window.getSelection) {
+      selection = window.getSelection()
+    } else if (typeof document.selection !== 'undefined') {
+      selection = document.selection
+    }
+
+    var selectedRange = selection.getRangeAt(0)
+
+    return selectedRange.toString()
+  }
   useEffect(() => {
     let json = {}
     allVerses.forEach((element, key) => {
@@ -64,7 +77,7 @@ function BlogPost (props) {
               return (
                 <CardWrapper
                   onMouseUp={() => {
-                    setTexto({text: window.getSelection().toString(), key: key})
+                    setTexto({text: getSelectedText(), key: key})
                   }}
                   key={key}
                 >
