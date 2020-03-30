@@ -1,4 +1,4 @@
-# Blog with Gatsby
+# Gospel Doctrine
 
 _Fully customizable blog template with a React.js front-end._
 
