@@ -80,8 +80,8 @@ function BlogPost (props) {
                     setTexto({text: getSelectedText(), key: key})
                   }}
                   onTouchEnd={() => {
-                    setTexto({text: getSelectedText(), key: key})
                     if (getSelectedText() !== '') {
+                      setTexto({text: getSelectedText(), key: key})
                       window.alert(getSelectedText())
                     }
                   }}
