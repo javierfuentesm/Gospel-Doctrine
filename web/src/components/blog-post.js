@@ -52,7 +52,7 @@ function BlogPost (props) {
         setShowShare([...showShare, (showShare[texto.key].show = true)])
       }
     }
-  }, [texto])
+  }, [texto.text])
 
   return (
     <article className={styles.root}>
