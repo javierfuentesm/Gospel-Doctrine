@@ -100,7 +100,7 @@ function BlogPost (props) {
                   <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
 
-                    {navigator.share ? (
+                    {window.navigator.share ? (
 
                       <button onClick={shareAPI} >Share</button>
 
