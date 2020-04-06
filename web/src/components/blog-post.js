@@ -21,11 +21,21 @@ function BlogPost (props) {
 
   const getSelectedText = () => {
     var selection = null
-
-    if (window.getSelection) {
-      selection = window.getSelection()
-    } else if (typeof document.selection !== 'undefined') {
-      selection = document.getSelection()
+    if (navigator.share) {
+      navigator
+        .share({
+          title: 'web.dev',
+          text: 'Check out web.dev.',
+          url: 'https://web.dev/'
+        })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error))
+    } else {
+      if (window.getSelection) {
+        selection = window.getSelection()
+      } else if (typeof document.selection !== 'undefined') {
+        selection = document.getSelection()
+      }
     }
 
     /*  var selectedRange = selection.getRangeAt(0) */
@@ -41,7 +51,7 @@ function BlogPost (props) {
         id: key
       }
       aux.push(json)
-      setShowShare(showShare => [...showShare, json])
+      setShowShare((showShare) => [...showShare, json])
     })
   }, [])
   useEffect(() => {
@@ -113,7 +123,7 @@ function BlogPost (props) {
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Books</h3>
                 <ul>
-                  {allBooks.map(book => (
+                  {allBooks.map((book) => (
                     <a>
                       <Link to={getBookUrl(book.node.publishedAt, book.node.slug.current)}>
                         <li key={book.node._id}>{book.node.title}</li>
@@ -127,7 +137,7 @@ function BlogPost (props) {
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Chapter Menu</h3>
                 <ul>
-                  {allPosts.map(post => {
+                  {allPosts.map((post) => {
                     const finalPost = post.node
                     return (
                       <Link to={getBlogUrl(finalPost.publishedAt, finalPost.slug.current)}>
