@@ -13,6 +13,7 @@ import {
   CardHeading,
   CardBody
 } from '../components/styledComponents/Card'
+var navigator = require('web-midi-api')
 
 function BlogPost (props) {
   const {allBooks, mainImage, allPosts, allVerses} = props
@@ -33,10 +34,10 @@ function BlogPost (props) {
     return selection.toString()
   }
 
-  const shareAPI = () => {
+  const shareAPI = (finalVerse) => {
     if (navigator.share) {
       navigator.share({
-        title: finalVerse.title,
+        title: finalVerse,
         text: texto.text,
         url: window.location.href
       })
@@ -100,9 +101,9 @@ function BlogPost (props) {
                   <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
 
-                    {window.navigator.share ? (
+                    {navigator.share ? (
 
-                      <button onClick={shareAPI} >Share</button>
+                      <button onClick={shareAPI(finalVerse.title)} >Share</button>
 
                     ) : (
 
