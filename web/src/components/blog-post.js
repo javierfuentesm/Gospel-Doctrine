@@ -6,6 +6,7 @@ import Container from './container'
 import ShareComponent from './share'
 import styles from './blog-post.module.css'
 import {Link} from 'gatsby'
+import ShareButton from 'react-web-share-button'
 
 import {
   CardWrapper,
@@ -13,15 +14,15 @@ import {
   CardHeading,
   CardBody
 } from '../components/styledComponents/Card'
-var navigator = require('web-midi-api')
 
 function BlogPost (props) {
   const {allBooks, mainImage, allPosts, allVerses} = props
   const [texto, setTexto] = useState()
+  const [navigatorShare, setNavigatorShare] = useState(false)
   const [showShare, setShowShare] = useState([])
 
   const getSelectedText = () => {
-    var selection = null
+    let selection = null
 
     if (window.getSelection) {
       selection = window.getSelection()
@@ -33,17 +34,11 @@ function BlogPost (props) {
 
     return selection.toString()
   }
-
-  const shareAPI = (finalVerse) => {
-    if (navigator.share) {
-      navigator.share({
-        title: finalVerse,
-        text: texto.text,
-        url: window.location.href
-      })
-    }
-  }
   useEffect(() => {
+    if (navigator.share) {
+      setNavigatorShare(true)
+    }
+
     let json = {}
     allVerses.forEach((element, key) => {
       let aux = JSON.parse(JSON.stringify(showShare))
@@ -101,30 +96,35 @@ function BlogPost (props) {
                   <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
 
-                    {navigator.share ? (
-
-                      <button onClick={shareAPI(finalVerse.title)} >Share</button>
-
-                    ) : (
-
+                    {navigatorShare ? (
                       <>
-                        {showShare && showShare.length > 0 && (
-                        <>
-                          {showShare[key].show && (
+                        {showShare[key].show && (
                           <>
-                            <ShareComponent
-                              url={window.location.href}
-                              quote={finalVerse.title}
+                            <ShareButton
+                              title={finalVerse.title}
                               text={texto.text}
+                              url={window.location.href}
                             />
                           </>
-                          )}
-                        </>
                         )}
-
+                      </>
+                    ) : (
+                      <>
+                        {showShare && showShare.length > 0 && (
+                          <>
+                            {showShare[key].show && (
+                              <>
+                                <ShareComponent
+                                  url={window.location.href}
+                                  quote={finalVerse.title}
+                                  text={texto.text}
+                                />
+                              </>
+                            )}
+                          </>
+                        )}
                       </>
                     )}
-
                   </CardBody>
                 </CardWrapper>
               )
