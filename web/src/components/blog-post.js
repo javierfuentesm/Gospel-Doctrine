@@ -21,26 +21,26 @@ function BlogPost (props) {
 
   const getSelectedText = () => {
     var selection = null
-    if (navigator.share) {
-      navigator
-        .share({
-          title: 'web.dev',
-          text: 'Check out web.dev.',
-          url: 'https://web.dev/'
-        })
-        .then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error))
-    } else {
-      if (window.getSelection) {
-        selection = window.getSelection()
-      } else if (typeof document.selection !== 'undefined') {
-        selection = document.getSelection()
-      }
+
+    if (window.getSelection) {
+      selection = window.getSelection()
+    } else if (typeof document.selection !== 'undefined') {
+      selection = document.getSelection()
     }
 
     /*  var selectedRange = selection.getRangeAt(0) */
 
     return selection.toString()
+  }
+
+  const shareAPI = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: finalVerse.title,
+        text: texto.text,
+        url: window.location.href
+      })
+    }
   }
   useEffect(() => {
     let json = {}
@@ -99,9 +99,17 @@ function BlogPost (props) {
                   </CardHeader>
                   <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
-                    {showShare && showShare.length > 0 && (
+
+                    {navigator.share ? (
+
+                      <button onClick={shareAPI} >Share</button>
+
+                    ) : (
+
                       <>
-                        {showShare[key].show && (
+                        {showShare && showShare.length > 0 && (
+                        <>
+                          {showShare[key].show && (
                           <>
                             <ShareComponent
                               url={window.location.href}
@@ -109,9 +117,13 @@ function BlogPost (props) {
                               text={texto.text}
                             />
                           </>
+                          )}
+                        </>
                         )}
+
                       </>
                     )}
+
                   </CardBody>
                 </CardWrapper>
               )
