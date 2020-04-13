@@ -14,6 +14,11 @@ import {
   CardHeading,
   CardBody
 } from '../components/styledComponents/Card'
+window.oncontextmenu = function (event) {
+  event.preventDefault()
+  event.stopPropagation()
+  return false
+}
 
 function BlogPost (props) {
   const {allBooks, mainImage, allPosts, allVerses} = props
