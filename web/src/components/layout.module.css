@@ -8,6 +8,7 @@
   @media (--media-min-small) {
     min-height: calc(100% - 91px - 155px);
   }
+  -webkit-touch-callout: none;
 }
 
 .footer {
