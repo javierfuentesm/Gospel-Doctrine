@@ -91,7 +91,7 @@ function BlogPost (props) {
                   onMouseUp={() => {
                     setTexto({text: getSelectedText(), key: key})
                   }}
-                  onTouchEnd={() => {
+                  onTouchMove={() => {
                     setTexto({text: getSelectedText(), key: key})
                   }}
                   key={key}
