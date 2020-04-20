@@ -16,7 +16,7 @@ const ShareComponent = ({url, quote, text}) => {
       {network: 'Facebook', icon: FaFacebook}
     ],
     text: `I want to share this ${quote}`,
-    longtext: `I fund interesting this quote ${text}`
+    longtext: `${text}`
   }
 
   return <ShareBlockStandard {...shareBlockProps} />

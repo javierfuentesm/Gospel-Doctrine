@@ -8,12 +8,7 @@ import styles from './blog-post.module.css'
 import {Link} from 'gatsby'
 import ShareButton from 'react-web-share-button'
 
-import {
-  CardWrapper,
-  CardHeader,
-  CardHeading,
-  CardBody
-} from '../components/styledComponents/Card'
+import {CardWrapper, CardHeader, CardHeading, CardBody} from '../components/styledComponents/Card'
 
 function BlogPost (props) {
   const {allBooks, mainImage, allPosts, allVerses} = props
@@ -53,7 +48,7 @@ function BlogPost (props) {
         id: key
       }
       aux.push(json)
-      setShowShare((showShare) => [...showShare, json])
+      setShowShare(showShare => [...showShare, json])
     })
   }, [])
   useEffect(() => {
@@ -91,49 +86,25 @@ function BlogPost (props) {
                   onMouseUp={() => {
                     setTexto({text: getSelectedText(), key: key})
                   }}
-                  onTouchStart={() => {
-                    setTexto({text: getSelectedText(), key: key})
-                  }}
                   onTouchEnd={() => {
                     setTexto({text: getSelectedText(), key: key})
                   }}
                   key={key}
+
                 >
+                  <a href={`#${finalVerse.title}`} >Hola </a>
                   <CardHeader>
                     <CardHeading>{finalVerse.title}</CardHeading>
                   </CardHeader>
-                  <CardBody>
+                  <CardBody >
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
 
-                    {navigatorShare ? (
-                      <>
-                        {showShare[key].show && (
-                          <>
-                            <ShareButton
-                              title={finalVerse.title}
-                              text={texto.text}
-                              url={window.location.href}
-                            />
-                          </>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {showShare && showShare.length > 0 && (
-                          <>
-                            {showShare[key].show && (
-                              <>
-                                <ShareComponent
-                                  url={window.location.href}
-                                  quote={finalVerse.title}
-                                  text={texto.text}
-                                />
-                              </>
-                            )}
-                          </>
-                        )}
-                      </>
-                    )}
+                    <ShareComponent
+                      url={window.location.href}
+                      quote={finalVerse.title}
+                      text='I want to share this quote with you'
+                    />
+
                   </CardBody>
                 </CardWrapper>
               )
@@ -145,7 +116,7 @@ function BlogPost (props) {
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Books</h3>
                 <ul>
-                  {allBooks.map((book) => (
+                  {allBooks.map(book => (
                     <a>
                       <Link to={getBookUrl(book.node.publishedAt, book.node.slug.current)}>
                         <li key={book.node._id}>{book.node.title}</li>
@@ -159,7 +130,7 @@ function BlogPost (props) {
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Chapter Menu</h3>
                 <ul>
-                  {allPosts.map((post) => {
+                  {allPosts.map(post => {
                     const finalPost = post.node
                     return (
                       <Link to={getBlogUrl(finalPost.publishedAt, finalPost.slug.current)}>
