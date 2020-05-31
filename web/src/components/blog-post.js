@@ -7,34 +7,13 @@ import ShareComponent from './share'
 import styles from './blog-post.module.css'
 import {Link} from 'gatsby'
 import ShareButton from 'react-web-share-button'
-
 import {CardWrapper, CardHeader, CardHeading, CardBody} from '../components/styledComponents/Card'
 
 function BlogPost (props) {
   const {allBooks, mainImage, allPosts, allVerses} = props
-  const [texto, setTexto] = useState()
   const [navigatorShare, setNavigatorShare] = useState(false)
   const [showShare, setShowShare] = useState([])
 
-  const getSelectedText = () => {
-    let selection = null
-
-    window.oncontextmenu = function (event) {
-      event.preventDefault()
-      event.stopPropagation()
-      return false
-    }
-
-    if (window.getSelection) {
-      selection = window.getSelection()
-    } else if (typeof document.selection !== 'undefined') {
-      selection = document.getSelection()
-    }
-
-    /*  var selectedRange = selection.getRangeAt(0) */
-
-    return selection.toString()
-  }
   useEffect(() => {
     if (navigator.share) {
       setNavigatorShare(true)
@@ -51,15 +30,6 @@ function BlogPost (props) {
       setShowShare(showShare => [...showShare, json])
     })
   }, [])
-  useEffect(() => {
-    if (texto !== undefined) {
-      if (texto.text === '') {
-        setShowShare([...showShare, (showShare[texto.key].show = false)])
-      } else {
-        setShowShare([...showShare, (showShare[texto.key].show = true)])
-      }
-    }
-  }, [texto])
 
   return (
     <article className={styles.root}>
@@ -82,29 +52,35 @@ function BlogPost (props) {
             {allVerses.map((post, key) => {
               const finalVerse = post.node
               return (
-                <CardWrapper
-                  onMouseUp={() => {
-                    setTexto({text: getSelectedText(), key: key})
-                  }}
-                  onTouchEnd={() => {
-                    setTexto({text: getSelectedText(), key: key})
-                  }}
-                  key={key}
-
-                >
-                  <a href={`#${finalVerse.title}`} >Hola </a>
+                <CardWrapper key={key}>
+                  <a id={key} />
                   <CardHeader>
                     <CardHeading>{finalVerse.title}</CardHeading>
                   </CardHeader>
-                  <CardBody >
+                  <CardBody>
                     {finalVerse._rawBody && <PortableText blocks={finalVerse._rawBody} />}
 
-                    <ShareComponent
-                      url={window.location.href}
-                      quote={finalVerse.title}
-                      text='I want to share this quote with you'
-                    />
-
+                    {navigatorShare ? (
+                      <>
+                        <ShareButton
+                          title={finalVerse.title}
+                          text='I want to share this quote with you'
+                          url={`${window.location.href}#${key}`}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        {showShare && showShare.length > 0 && (
+                          <>
+                            <ShareComponent
+                              url={`${window.location.href}#${key}`}
+                              quote={finalVerse.title}
+                              text='I want to share this quote with you'
+                            />
+                          </>
+                        )}
+                      </>
+                    )}
                   </CardBody>
                 </CardWrapper>
               )

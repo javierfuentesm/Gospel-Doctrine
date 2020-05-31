@@ -1,4 +1,3 @@
-
 import React from 'react'
 import {FaTwitter, FaFacebook, FaEnvelope} from 'react-icons/fa/'
 
@@ -12,7 +11,6 @@ const ShareComponent = ({url, quote, text}) => {
     buttons: [
       {network: 'Twitter', icon: FaTwitter},
       {network: 'Email', icon: FaEnvelope},
-
       {network: 'Facebook', icon: FaFacebook}
     ],
     text: `I want to share this ${quote}`,
