@@ -25,6 +25,7 @@ function QuadPreview (props) {
                 .url()}
               alt={node.mainImage.alt}
             />
+
           )}
         </div>
         <div className={styles.text}>
