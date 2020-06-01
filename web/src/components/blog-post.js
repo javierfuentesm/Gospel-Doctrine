@@ -66,6 +66,15 @@ function BlogPost (props) {
                           title={finalVerse.title}
                           text='I want to share this quote with you'
                           url={`${window.location.href}#${key}`}
+                          buttonText='Share this quote'
+                          buttonStyle={{
+                            backgroundColor: ' #4CAF50',
+                            border: 'none',
+                            color: 'white',
+                            padding: '15px 32px',
+                            textAlign: 'center',
+                            textDecoration: 'none'
+                          }}
                         />
                       </>
                     ) : (
