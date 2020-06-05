@@ -1,7 +1,7 @@
 export default {
   name: 'book',
   type: 'document',
-  title: 'Book',
+  title: 'Libro',
   fields: [
     {
       name: 'title',

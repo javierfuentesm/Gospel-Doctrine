@@ -95,9 +95,9 @@ const QuadTemplate = props => {
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
+        <h1 hidden>Bienvenidos a {site.title}</h1>
         {books && (
-          <BookPreviewList title='Books' nodes={books} browseMoreHref='/archive/' />
+          <BookPreviewList title='Libros' nodes={books} browseMoreHref='/archive/' />
         )}
       </Container>
     </Layout>

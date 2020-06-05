@@ -81,10 +81,10 @@ const IndexPage = props => {
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
-        <h1 className={responsiveTitle1}>Welcome to {site.title}</h1>
+        <h1 className={responsiveTitle1}>Binvenidos a {site.title}</h1>
         {quad && (
           <QuadPreviewList
-            title='Books'
+            title='Libros'
             nodes={quad}
           />
         )}

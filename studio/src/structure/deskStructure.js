@@ -58,17 +58,17 @@ export default () =>
         ),
       S.divider(),
       S.listItem()
-        .title('Chapters')
+        .title('Capítulos')
         .icon(MdDescription)
         .schemaType('post')
-        .child(S.documentTypeList('post').title('Chapters')),
+        .child(S.documentTypeList('post').title('Capítulos')),
       S.listItem()
-        .title('Authors')
+        .title('Autores')
         .icon(MdPerson)
         .schemaType('author')
-        .child(S.documentTypeList('author').title('Authors')),
+        .child(S.documentTypeList('author').title('Autores')),
       S.listItem()
-        .title('Book')
+        .title('Libros')
         .icon(MdLocalOffer)
         .schemaType('book')
         .child(S.documentTypeList('book').title('Book')),

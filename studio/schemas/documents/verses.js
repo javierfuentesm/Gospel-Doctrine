@@ -1,7 +1,7 @@
 export default {
   name: 'verses',
   type: 'document',
-  title: 'Verses',
+  title: 'Versiculos',
   fields: [
     {
       name: 'title',
@@ -12,6 +12,11 @@ export default {
       name: 'body',
       type: 'bodyPortableText',
       title: 'Body'
+    },
+    {
+      name: 'order',
+      type: 'number',
+      title: 'Order of the Verse'
     },
     {
       name: 'post',
