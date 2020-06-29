@@ -72,7 +72,7 @@ export const query = graphql`
     }
 
     allVerses: allSanityVerses(
-      sort: { fields: [title] }
+      sort: { fields: [order] }
       filter: { post: { elemMatch: { id: { eq: $id } } } }
     ) {
       edges {
@@ -90,6 +90,7 @@ export const query = graphql`
     }
 
     allBooks: allSanityBook(filter: { quad: { elemMatch: { id: { eq: $idQuad } } } }) {
+      
       edges {
         node {
           id

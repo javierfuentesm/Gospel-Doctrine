@@ -99,7 +99,7 @@ function BlogPost (props) {
           <aside className={styles.metaContent}>
             {allBooks && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Books</h3>
+                <h3 className={styles.categoriesHeadline}>Libros</h3>
                 <ul>
                   {allBooks.map(book => (
                     <a>
@@ -113,7 +113,7 @@ function BlogPost (props) {
             )}
             {allPosts && (
               <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Chapter Menu</h3>
+                <h3 className={styles.categoriesHeadline}>Capítulos</h3>
                 <ul>
                   {allPosts.map(post => {
                     const finalPost = post.node
