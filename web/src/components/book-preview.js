@@ -34,8 +34,8 @@ function BookPreview (props) {
               <PortableText blocks={props._rawExcerpt} />
             </div>
           )}
-          <div className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</div>
-        </div>
+          {/*           <div className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</div>
+ */}        </div>
       </>
     </Link>
   )

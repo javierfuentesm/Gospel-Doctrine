@@ -11,9 +11,8 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => (
     <footer className={styles.footer}>
       <div className={styles.footerWrapper}>
         <div className={styles.siteInfo}>
-          &copy; {new Date().getFullYear()}, Built by javier Fuentes Mora {' '}
+          &copy; {new Date().getFullYear()}, Hecho por Javier Fuentes Mora
           &amp;
-          {` `}
           <a href='https://www.gatsbyjs.org'>Gatsby</a>
         </div>
       </div>

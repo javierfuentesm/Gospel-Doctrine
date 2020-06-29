@@ -16,11 +16,11 @@ function BookPreviewGrid (props) {
             </li>
           ))}
       </ul>
-      {props.browseMoreHref && (
+      {/*       {props.browseMoreHref && (
         <div className={styles.browseMoreNav}>
           <Link to={props.browseMoreHref}>Browse more</Link>
         </div>
-      )}
+      )} */}
     </div>
   )
 }

@@ -35,8 +35,8 @@ function QuadPreview (props) {
               <PortableText blocks={node._rawExcerpt} />
             </div>
           )}
-          <div className={styles.date}>{format(node.publishedAt, 'MMMM Do, YYYY')}</div>
-        </div>
+          {/*           <div className={styles.date}>{format(node.publishedAt, 'MMMM Do, YYYY')}</div>
+ */}        </div>
       </>
     </Link>
   )
