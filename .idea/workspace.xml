@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5aec6255-4f62-4aae-9722-82f3f91ea376" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/studio/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +28,27 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="build-studio" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-studio" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build-web" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-web" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -40,6 +62,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build-web" />
+        <item itemvalue="npm.build-studio" />
       </list>
     </recent_temporary>
   </component>
@@ -51,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598927734583</updated>
-      <workItem from="1598927736937" duration="2122000" />
+      <workItem from="1598927736937" duration="2725000" />
     </task>
     <servers />
   </component>
@@ -59,22 +83,26 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1255" height="380" key="GridCell.Tab.0.bottom" timestamp="1598929897789">
+    <state x="1574" y="452" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598930397087">
       <screen x="0" y="23" width="5120" height="1349" />
     </state>
-    <state width="1255" height="380" key="GridCell.Tab.0.bottom/0.23.5120.1349@0.23.5120.1349" timestamp="1598929897789" />
-    <state width="1255" height="380" key="GridCell.Tab.0.center" timestamp="1598929897788">
+    <state x="1574" y="452" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.5120.1349@0.23.5120.1349" timestamp="1598930397087" />
+    <state width="1255" height="804" key="GridCell.Tab.0.bottom" timestamp="1598930586589">
       <screen x="0" y="23" width="5120" height="1349" />
     </state>
-    <state width="1255" height="380" key="GridCell.Tab.0.center/0.23.5120.1349@0.23.5120.1349" timestamp="1598929897788" />
-    <state width="1255" height="380" key="GridCell.Tab.0.left" timestamp="1598929897788">
+    <state width="1255" height="804" key="GridCell.Tab.0.bottom/0.23.5120.1349@0.23.5120.1349" timestamp="1598930586589" />
+    <state width="1255" height="804" key="GridCell.Tab.0.center" timestamp="1598930586588">
       <screen x="0" y="23" width="5120" height="1349" />
     </state>
-    <state width="1255" height="380" key="GridCell.Tab.0.left/0.23.5120.1349@0.23.5120.1349" timestamp="1598929897788" />
-    <state width="1255" height="380" key="GridCell.Tab.0.right" timestamp="1598929897789">
+    <state width="1255" height="804" key="GridCell.Tab.0.center/0.23.5120.1349@0.23.5120.1349" timestamp="1598930586588" />
+    <state width="1255" height="804" key="GridCell.Tab.0.left" timestamp="1598930586588">
       <screen x="0" y="23" width="5120" height="1349" />
     </state>
-    <state width="1255" height="380" key="GridCell.Tab.0.right/0.23.5120.1349@0.23.5120.1349" timestamp="1598929897789" />
+    <state width="1255" height="804" key="GridCell.Tab.0.left/0.23.5120.1349@0.23.5120.1349" timestamp="1598930586588" />
+    <state width="1255" height="804" key="GridCell.Tab.0.right" timestamp="1598930586589">
+      <screen x="0" y="23" width="5120" height="1349" />
+    </state>
+    <state width="1255" height="804" key="GridCell.Tab.0.right/0.23.5120.1349@0.23.5120.1349" timestamp="1598930586589" />
     <state x="1546" y="316" width="579" height="762" key="find.popup" timestamp="1598929234520">
       <screen x="0" y="23" width="5120" height="1349" />
     </state>
